@@ -93,7 +93,7 @@ fetch(
         document.getElementById("suhu").innerHTML = suhu;
         document.getElementById("keadaan").innerHTML = keadaan;
 
-        let iconUrl = "http://openweathermap.org/img/wn/" + icon + ".png"
+        let iconUrl = "https://openweathermap.org/img/wn/" + icon + ".png"
         document.getElementById("gambar").src = iconUrl;
     });
 
