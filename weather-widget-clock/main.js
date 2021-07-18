@@ -76,27 +76,31 @@ setInterval(jam, 1000); //repeat this function in 1000ms
 
 
 // City display
-(function kota() {
+function kota() {
     document.getElementById("kota").innerHTML = city;
-})();
+}
+kota();
 
 // Weather fetching, and display them (json object)
-fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${APPID}&units=${units}`
-)
-.then((response) => response.json())
-    .then((data) => {
-        let suhu = Math.round(data.main.temp) + " °C";
-        let keadaan = data.weather[0].description;
-        let icon = data.weather[0].icon
-        
-        document.getElementById("suhu").innerHTML = suhu;
-        document.getElementById("keadaan").innerHTML = keadaan;
-
-        let iconUrl = "https://openweathermap.org/img/wn/" + icon + ".png"
-        document.getElementById("gambar").src = iconUrl;
-    });
-
+function weather() {
+    fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${APPID}&units=${units}`
+    )
+    .then((response) => response.json())
+        .then((data) => {
+            let suhu = Math.round(data.main.temp) + " °C";
+            let keadaan = data.weather[0].description;
+            let icon = data.weather[0].icon
+            
+            document.getElementById("suhu").innerHTML = suhu;
+            document.getElementById("keadaan").innerHTML = keadaan;
+    
+            let iconUrl = "https://openweathermap.org/img/wn/" + icon + ".png"
+            document.getElementById("gambar").src = iconUrl;
+        });
+}
+weather();
+    
 // A button to change the city
 function changeCity() {
     let edit = document.getElementById('changeCity');
@@ -146,7 +150,7 @@ function clickPress(event){
 }
 
 // Last updated for the weather
-(function lastup() {
+function lastup() {
     let lastup = document.getElementById('lastup')
     let date = new Date()
 
@@ -161,4 +165,15 @@ function clickPress(event){
     }
 
     lastup.innerHTML = "Last updated at " + jam + "." + menit;
-})();
+}
+lastup();
+
+function refresh() {
+    let reload = document.getElementById("reload")
+    reload.style.animation = "rotation 1.5s";
+    reload.style.animationIterationCount = 3;
+
+    kota();
+    weather();
+    lastup();
+}
