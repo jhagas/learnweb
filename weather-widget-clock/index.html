@@ -14,7 +14,7 @@
                         <div class="waktu">
                             <h1 class="time" id="time">TIME</h1>
                             <h2 class="date" id="date">date</h2>
-                            <button class="reload" onclick="window.location.reload();">&#x21bb;</button>
+                            <button class="reload" id="reload" onclick="refresh();">&#x21bb;</button>
                         </div>
                         <div class="cuaca">
                             <img id="gambar">
@@ -23,7 +23,7 @@
                                 <h2 id="keadaan">condition</h2>
                                 <div class="city">
                                     <h2 id="kota">CITY</h2>
-                                    <input type="text" name="city" id="city" onkeypress="clickPress(event)" onfocusout="changeDone()">
+                                    <input type="text" name="city" id="city" onkeypress="clickPress(event)">
                                     <button class="changeCity" id="changeCity" onclick="changeCity()">&#9998;</button>
                                     <button class="changeDone" id="changeDone" onclick="changeDone()">&#10004</button>
                                 </div>
