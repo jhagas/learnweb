@@ -82,7 +82,7 @@ setInterval(jam, 1000); //repeat this function in 1000ms
 
 // Weather fetching, and display them (json object)
 fetch(
-    `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${APPID}&units=${units}`
+    `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${APPID}&units=${units}`
 )
 .then((response) => response.json())
     .then((data) => {
