@@ -108,6 +108,8 @@ function changeCity() {
     disp.style.display = "none";
     done.style.display = "block";
     form.style.display = "block";
+
+    form.focus();
 }
 
 // Changing is done, button
@@ -129,7 +131,10 @@ function changeDone() {
     
         window.location.reload();
     } else {
-        alert("Please check your input form!")
+        edit.style.display = "block";
+        disp.style.display = "block";
+        done.style.display = "none";
+        form.style.display = "none";
     }
 }
 
