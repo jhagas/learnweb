@@ -76,11 +76,11 @@ input {
 
 .waktu {
     text-align: right;
-    margin-bottom: 3em;
+    margin-bottom: 1.5em;
 }
 
 .time {
-    font-size: 4em;
+    font-size: 4.5em;
 }
 
 .reload {
@@ -132,6 +132,44 @@ input {
     margin-top: 3px;
     color: #f8f8f280;
     font-size: 9px;
+}
+
+.break {
+    height: 1px;
+    width: 200px;
+    background-color: #f1fa8c60;
+    margin: auto;
+    margin-top: 1.5em;
+}
+
+.covid {
+    margin-top: 1.5em;
+    padding: 0 10px;
+}
+
+.judul {
+    font-size: 11pt;
+    text-align: center;
+}
+
+.updateCovid {
+    color: #f8f8f280;
+    font-size: 8pt;
+    text-align: center;
+    margin-bottom: 1em
+}
+
+.penambahan {
+    display: flex;
+}
+
+.data {
+    font-size: 9pt;
+    margin-bottom: .3em;
+}
+
+.ket {
+    width: 8em;
 }
 
 @keyframes rotation {

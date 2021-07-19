@@ -8,6 +8,7 @@ city = localStorage.getItem("city");
 let APPID = "fd2c04ed7f9802656bd2cc23bddc7ad9";
 let units = "metric";
 
+
 // Looping function to update and set the clock every second
 function jam() {
     let fulldate = new Date();
@@ -168,6 +169,102 @@ function lastup() {
 }
 lastup();
 
+// COVID 19 IN INDONESIA
+function covid() {
+    fetch("https://apicovid19indonesia-v2.vercel.app/api/indonesia/more")
+        .then((response) => response.json())
+        .then((data) => {
+            let positif = data.penambahan.positif;
+            let sembuh = data.penambahan.sembuh;
+            let dirawat = data.penambahan.dirawat;
+            let meninggal = data.penambahan.meninggal;
+
+            let fulldate = new Date(data.penambahan.created)
+            let jam = fulldate.getHours();
+            let menit = fulldate.getMinutes();
+        
+            if (jam < 10){
+                jam = "0" + jam;
+            }
+            if (menit < 10){
+                menit = "0" + menit;
+            }
+            
+        
+            // Date, american format
+            let tanda = "th";
+            let tanggalHTML = document.getElementById("date");
+        
+            let namaBulan = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        
+            let bulan = fulldate.getMonth();
+            let tanggal = fulldate.getDate() + ""; // to change into string data types
+            let tahun = fulldate.getFullYear();
+        
+            bulan = namaBulan[bulan];
+        
+            if (tanggal.length == 1) {
+                if ( tanggal == 1 ) {
+                    tanda = "st";
+                }
+                if ( tanggal == 2 ) {
+                    tanda = "nd";
+                }
+                if ( tanggal == 3 ) {
+                    tanda = "rd";
+                }
+            }
+            if (tanggal.length == 2) {
+                let digitSatu = tanggal.substring(0, 1)
+                let digitDua = tanggal.substring(1, tanggal.length)
+        
+                if (digitSatu != 1) {
+                    if ( digitDua == 1 ) {
+                        tanda = "st";
+                    }
+                    if ( digitDua == 2 ) {
+                        tanda = "nd";
+                    }
+                    if ( digitDua == 3 ) {
+                        tanda = "rd";
+                    }
+                }
+            }
+            waktu = `${bulan} ${tanggal}${tanda} ${tahun}, ${jam}:${menit}`;
+
+            let positifDoc = document.getElementById('positif');
+            let sembuhDoc = document.getElementById('sembuh');
+            let dirawatDoc = document.getElementById('dirawat');
+            let meninggalDoc = document.getElementById('meninggal');
+            let updateDoc = document.getElementById('update');
+
+            positifDoc.innerHTML = ":  +" + positif;
+            sembuhDoc.innerHTML = ":  +" + sembuh;
+            dirawatDoc.innerHTML = ":  +" + dirawat;
+            meninggalDoc.innerHTML = ":  +" + meninggal;
+            updateDoc.innerHTML = "updated on " + waktu;
+        })
+}
+covid();
+
+function vaksin() {
+    fetch("https://cekdiri.id/vaksinasi/")
+    .then((response) => response.json())
+        .then((data) => {
+            let vaksin1 = document.getElementById("vaksin1")
+            let vaksin2 = document.getElementById("vaksin2")
+
+            let terakhir = data.monitoring.length - 1;
+            let vaksin1Data = data.monitoring[terakhir].cakupan.vaksinasi1;
+            let vaksin2Data = data.monitoring[terakhir].cakupan.vaksinasi2;
+
+            vaksin1.innerHTML = ":  " + vaksin1Data;
+            vaksin2.innerHTML = ":  " + vaksin2Data;
+        })
+    
+}
+vaksin();
+
 function refresh() {
     let reload = document.getElementById("reload")
     reload.style.animation = "rotation 1.5s";
@@ -176,4 +273,6 @@ function refresh() {
     kota();
     weather();
     lastup();
+    covid();
+    vaksin();
 }
