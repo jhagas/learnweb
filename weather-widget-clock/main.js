@@ -240,7 +240,13 @@ function covid() {
 
             positifDoc.innerHTML = ":  +" + positif;
             sembuhDoc.innerHTML = ":  +" + sembuh;
-            dirawatDoc.innerHTML = ":  +" + dirawat;
+        
+            if ( dirawat < 0 ) {
+                dirawatDoc.innerHTML = ":  " + dirawat;
+            } else {
+                dirawatDoc.innerHTML = ":  +" + dirawat;
+            }
+        
             meninggalDoc.innerHTML = ":  +" + meninggal;
             updateDoc.innerHTML = "updated on " + waktu;
         })
